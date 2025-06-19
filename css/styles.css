@@ -1,7 +1,6 @@
 /* =============================
    RESET & BASE STYLES
    ============================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -16,10 +15,9 @@ body {
 /* =============================
    HERO SECTION BACKGROUND
    ============================= */
-
 .hero-section {
   min-height: 85vh;
-  background: #000;
+  background: linear-gradient(to bottom, #000000 0%, #0d0d0d 50%, #f5f5f5 100%);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -27,11 +25,9 @@ body {
   z-index: 1;
 }
 
-
 /* =============================
    NAVIGATION BAR STYLES
    ============================= */
-
 header {
   display: flex;
   justify-content: space-between;
@@ -57,20 +53,27 @@ header {
 
 .navbar ul li a {
   text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  font-size: 16px;
+  color: #fdb516;       /* change from white to yellow */
+  font-weight: 600;
+  font-size: 18px;      /* slightly smaller than before */
+  padding: 8px 12px;
   transition: 0.3s;
 }
 
 .navbar ul li a:hover {
-  color: #fdb516;
+  color: #0f2027; /* dark text */
+  background-color: #fdb516;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+
+
 
 /* =============================
    HERO CONTENT STYLES
    ============================= */
-
 .hero-content {
   flex: 1;
   display: flex;
@@ -80,12 +83,40 @@ header {
   z-index: 2;
 }
 
-/* Text area */
 .hero-text {
   max-width: 600px;
 }
 
-/* Image area */
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.name-highlight {
+  color: #fdb516;
+  white-space: nowrap;
+}
+
+.hero-text p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+/* Small Summary Paragraph */
+.hero-text .summary {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0 0 30px;
+  color: #eee;
+  font-style: italic;
+  padding-left: 20px;
+  max-width: 600px;
+}
+
 .hero-image img {
   width: 320px;
   border-radius: 50%;
@@ -93,50 +124,111 @@ header {
   box-shadow: 0 0 30px rgba(253, 181, 22, 0.5);
 }
 
-.hero-content h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-image {
+    margin-top: 30px;
+  }
+}
+/* =============================
+   Social Media Icons
+   ============================= */
+   /* Social Icons */
+
+/* Social Icons under hero buttons */
+.social-icons {
+  display: flex;
+  justify-content: flex-start;  /* align left */
+  max-width: 440px;             /* keep same width as buttons */
+  margin: 20px 0 0 0;           /* top margin, no horizontal centering */
+  padding-left: 10px;           /* slight padding from left edge */
+  gap: 30px;                    /* spacing between icons */
 }
 
-.hero-content h1 span {
+.social-icons a {
   color: #fdb516;
+  font-size: 36px;
+  transition: 0.3s;
+  /* remove flex:1 and text-align:center to avoid stretching */
 }
 
-.hero-content p {
-  font-size: 20px;
-  margin-bottom: 30px;
+.social-icons a:hover {
+  color: #ffb800;
+  transform: scale(1.2);
+}
+
+
+
+/* Footer Social Icons */
+.footer-socials {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.footer-socials a {
+  color: #fdb516;
+  font-size: 32px;  /* bigger size */
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  color: #ffb800;
+  transform: scale(1.1);
+}
+
+
+
+/* =============================
+   BUTTON STYLES
+   ============================= */
+/* Hero Buttons side by side, wider */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Button Style */
+.btn, .btn-outline {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 40px;
+  font-weight: 700;
+  transition: 0.3s;
+  min-width: 200px;
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 28px;
   background-color: #fdb516;
   color: #0f2027;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 30px;
-  transition: 0.3s;
 }
 
 .btn:hover {
   background-color: #ffb800;
 }
 
-/* =============================
-   BUTTON GROUP IN HERO SECTION
-   ============================= */
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Second button outline style */
 .btn-outline {
   background-color: transparent;
   color: #fdb516;
-  border: 2px solid #fdb516;
+  border: 3px solid #fdb516;
 }
 
 .btn-outline:hover {
@@ -144,21 +236,85 @@ header {
   color: #0f2027;
 }
 
+/* =============================
+   SECTION DIVIDER
+   ============================= */
+.section-divider {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
 
 /* =============================
-   MAIN CONTENT SECTION
+   SKILLS SECTION
    ============================= */
+.skills-section {
+  color: #222;
+  padding: 40px 0 60px;
+  text-align: center;
+}
 
-.main-content {
-  background-color: #f5f5f5;
-  color: #333;
-  padding: 100px 60px;
+.skills-section h2 {
+  font-size: 36px;
+  color: #fdb516;
+  margin-bottom: 30px;
+}
+
+.skills-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 30px;
+}
+
+.skills-icons div {
+  font-size: 20px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.skills-icons i {
+  font-size: 30px;
+  color: #fdb516;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skills-icons div:hover i {
+  transform: scale(1.3) rotate(10deg);
+  color: #ff9800;
+}
+
+@media (max-width: 768px) {
+  .skills-icons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* =============================
+   FOOTER STYLES
+   ============================= */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* =============================
    NIGHT SKY STARS BACKGROUND
    ============================= */
-
 .stars, .stars2, .stars3 {
   position: absolute;
   width: 2px;
