@@ -22,27 +22,29 @@
       <nav class="navbar">
         <ul>
           <li><a href="#" data-section="home">Home</a></li>
-          <li><a href="#" data-section="portfolio">My Portfolio</a></li>
-          <li><a href="#" data-section="resume">Resume</a></li>
-          <li><a href="#" data-section="contact">Contact</a></li>
+          <li><a href="#" data-section="about">About</a></li>
+          <li><a href="#" data-section="wil">Resume</a></li>
+          <li><a href="#" data-section="portfolio">Projects</a></li>
+          <li><a href="#" data-section="contact">Skills Overview</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- Home Section (visible by default) -->
+    <!-- Home Section -->
     <section id="home" class="page-section active-section">
       <div class="hero-content">
         <div class="hero-text">
           <h1>Hi There! I'm <span class="name-highlight">Mustafa Xaba</span></h1>
-          <p>A Passionate Software Developer</p>
-          <p class="summary">
-            Tech enthusiast and final-year Computer Science student passionate about blending code and creativity.
-            Focused on building interactive, user-friendly web applications and solving real-world problems through
-            technology.
+          <p>Computer Science student | Software Developer</p>
+
+          <p class="contact-details">
+            <span><i class="fas fa-map-marker-alt"></i> Centurion,Pretoria |</span>
+            <span><i class="fas fa-envelope"></i> sibusisomst@gmail.com |</span>
+            <span><i class="fas fa-phone"></i> +27 78 240 6722</span>
           </p>
 
           <div class="hero-buttons">
-            <a href="#" data-section="contact" class="btn">Contact Me</a>
+            <a href="#" data-section="contact" class="btn">Get in Touch</a>
             <a href="#" data-section="portfolio" class="btn btn-outline">View Portfolio</a>
           </div>
 
@@ -50,7 +52,7 @@
             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
             <a href="#"><i class="fa-brands fa-github"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="mailto:your@email.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:mustafa@example.com"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
 
@@ -59,253 +61,526 @@
         </div>
       </div>
     </section>
-  </div>
 
-  <!-- Portfolio Section (hidden by default) -->
-  <!-- Portfolio Section -->
-<section id="portfolio" class="page-section">
-  <div class="main-content">
-    <h2>My <span class="name-highlight">Projects</span></h2>
-    <p class="section-subtitle">Academic and personal projects demonstrating my skills</p>
+    <!-- About Section -->
+    <section id="about" class="page-section">
+        <div class="main-content">
+            <h2>About <span class="name-highlight">Me</span></h2>
+            <p class="section-subtitle">A brief introduction to my background and skills</p>
+            <div class="about-content">
+                <p class="about-text">
+                    I'm a final-year <strong>Computer Science</strong> student at the <strong>Tshwane University of
+                        Technology</strong> with a passion for building practical, real-world solutions through software
+                    development. Skilled in <strong>Java</strong>, <strong>Kotlin</strong>, <strong>JavaScript</strong>,
+                    <strong>Node.js</strong>, <strong>HTML</strong>, and <strong>CSS</strong>, I've worked on both mobile
+                    and web projects that tackle everyday challenges. I'm eager to grow, innovate, and add value to any team
+                    focused on meaningful, impactful technology.
+                </p>
+            </div>
     
-    <div class="projects-container">
-      <!-- Project 1 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/my-portfolio/images/project1-placeholder.jpg" alt="Student Management System">
+            <!-- Technology Stacks -->
+            <div class="tech-stacks">
+                <div class="tech-item">
+                    <i class="fab fa-java tech-icon"></i>
+                    <span class="tech-name">Java</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js tech-icon"></i>
+                    <span class="tech-name">JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-python tech-icon"></i>
+                    <span class="tech-name">Python</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database tech-icon"></i>
+                    <span class="tech-name">SQL</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-html5 tech-icon"></i>
+                    <span class="tech-name">HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-css3-alt tech-icon"></i>
+                    <span class="tech-name">CSS3</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-node-js tech-icon"></i>
+                    <span class="tech-name">Node.js</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-git-alt tech-icon"></i>
+                    <span class="tech-name">Git</span>
+                </div>
+            </div>
         </div>
-        <div class="project-details">
-          <h3>Student Management System</h3>
-          <p class="project-tech">
-            <span>Java</span>
-            <span>JavaFX</span>
-            <span>Derby DB</span>
-          </p>
-          <p class="project-description">
-            A comprehensive desktop application for managing student records, grades, and course enrollment.
-            Developed as part of my Advanced Programming course with CRUD functionality and data visualization.
-          </p>
-          <div class="project-links">
-            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-            <a href="#" class="btn btn-small btn-outline">View Demo</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/my-portfolio/images/project2-placeholder.jpg" alt="E-commerce Website">
-        </div>
-        <div class="project-details">
-          <h3>E-commerce Prototype</h3>
-          <p class="project-tech">
-            <span>JavaScript</span>
-            <span>Node.js</span>
-            <span>MySQL</span>
-          </p>
-          <p class="project-description">
-            Full-stack web application simulating an online store with user authentication, product catalog,
-            and shopping cart functionality. Developed for my Web Technologies course.
-          </p>
-          <div class="project-links">
-            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-            <a href="#" class="btn btn-small btn-outline">View Demo</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Project 3 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="/my-portfolio/images/project3-placeholder.jpg" alt="Data Analysis Tool">
-        </div>
-        <div class="project-details">
-          <h3>Data Analysis Tool</h3>
-          <p class="project-tech">
-            <span>Python</span>
-            <span>Pandas</span>
-            <span>Matplotlib</span>
-          </p>
-          <p class="project-description">
-            A data processing and visualization tool for analyzing academic performance datasets.
-            Created for my Data Structures and Algorithms course with statistical analysis features.
-          </p>
-          <div class="project-links">
-            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-            <a href="#" class="btn btn-small btn-outline">View Demo</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Project 4 - Capstone -->
-      <div class="project-card highlight-card">
-        <div class="project-badge">Capstone Project</div>
-        <div class="project-image">
-          <img src="/my-portfolio/images/project4-placeholder.jpg" alt="Final Year Project">
-        </div>
-        <div class="project-details">
-          <h3>AI-Based Learning Assistant</h3>
-          <p class="project-tech">
-            <span>Python</span>
-            <span>TensorFlow</span>
-            <span>Flask</span>
-          </p>
-          <p class="project-description">
-            My final year project - an intelligent tutoring system that adapts to student learning patterns.
-            Incorporates natural language processing and personalized recommendation algorithms.
-          </p>
-          <div class="project-links">
-            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-            <a href="#" class="btn btn-small btn-outline">View Demo</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-  <!-- Resume Section (hidden by default) -->
-  <!-- Resume Section -->
-<section id="resume" class="page-section">
-  <div class="main-content" style="text-align: center;">
-    <h2>My <span class="name-highlight">Resume</span></h2>
-    <p class="section-subtitle">Download my resume in your preferred format</p>
-    
-    <div class="resume-download-container">
-      <div class="download-card">
-        <i class="fas fa-file-pdf download-icon pdf-icon"></i>
-        <h3>PDF Version</h3>
-        <p>Best for printing and professional use</p>
-        <a href="/path/to/your-resume.pdf" download="MustafaXaba_Resume.pdf" class="btn download-btn">
-          <i class="fas fa-download"></i> Download PDF
-        </a>
-      </div>
-      
-      <div class="download-card">
-        <i class="fas fa-file-word download-icon word-icon"></i>
-        <h3>Word Version</h3>
-        <p>Editable format for recruiters</p>
-        <a href="/path/to/your-resume.docx" download="MustafaXaba_Resume.docx" class="btn download-btn">
-          <i class="fas fa-download"></i> Download Word
-        </a>
-      </div>
-    </div>
-    
-    <!-- Admin upload form (hidden by default) -->
-    <div id="resume-upload-form" style="display: none; margin-top: 50px; max-width: 500px; margin-left: auto; margin-right: auto;">
-      <h3><i class="fas fa-cloud-upload-alt"></i> Update Resume</h3>
-      <form id="uploadForm" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="pdfFile">PDF File:</label>
-          <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="wordFile">Word File:</label>
-          <input type="file" id="wordFile" name="wordFile" accept=".doc,.docx" class="form-control">
-        </div>
-        <button type="submit" class="btn" style="margin-top: 15px;">
-          <i class="fas fa-save"></i> Update Files
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="page-section">
-    <div class="main-content">
-      <h2>Languages & Technologies</h2>
-      <div class="skills-icons">
-        <div><i class="fa-solid fa-coffee"></i> Java</div>
-        <div><i class="fa-brands fa-js-square"></i> JavaScript</div>
-        <div><i class="fa-brands fa-node-js"></i> Node.js</div>
-        <div><i class="fa-brands fa-python"></i> Python</div>
-        <div><i class="fa-solid fa-database"></i> MySQL</div>
-        <div><i class="fa-solid fa-server"></i> Java DB Derby</div>
-        <div><i class="fa-brands fa-html5"></i> HTML5</div>
-        <div><i class="fa-brands fa-css3-alt"></i> CSS3</div>
-        <div><i class="fa-brands fa-git-alt"></i> Git</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section (hidden by default) -->
-  <!-- Contact Section -->
-<section id="contact" class="page-section">
-  <div class="main-content">
-    <h2>Get In <span class="name-highlight">Touch</span></h2>
-    <p class="section-subtitle">I'm currently looking for new opportunities. Feel free to reach out!</p>
-    
-    <div class="contact-container">
-      <!-- Contact Options -->
-      <div class="contact-options">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <h3>Email Me</h3>
-          <p>For professional inquiries</p>
-          <a href="mailto:mustafa@example.com" class="btn contact-btn">
-            <i class="fas fa-paper-plane"></i> Send Email
-          </a>
-        </div>
+    <!-- WIL Section -->
+    <section id="wil" class="page-section">
         
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fab fa-linkedin"></i>
-          </div>
-          <h3>LinkedIn</h3>
-          <p>Let's connect professionally</p>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn contact-btn">
-            <i class="fab fa-linkedin"></i> View Profile
-          </a>
-        </div>
+            <h2>Open to New <span class="name-highlight">Opportunities</span></h2>
+            <p class="section-subtitle">Gaining practical experience in real-world environments</p>
+    
+            <div class="wil-cards">
+                <div class="wil-card">
+                    <div class="wil-card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Internship & WIL opportunity</h3>
+                    <p>Currently seeking a work-integrated learning opportunity to apply my academic knowledge in a
+                        professional setting and gain valuable industry experience.</p>
+                </div>
+    
+                <div class="wil-card">
+                    <div class="wil-card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>My Strengths</h3>
+                    <ul class="strengths-list">
+                        <li><strong>Full-Stack Development:</strong> Proficient in both frontend and backend technologies
+                        </li>
+                        <li><strong>Problem Solving:</strong> Strong analytical skills for developing efficient solutions
+                        </li>
+                        <li><strong>Adaptability:</strong> Quick learner of new technologies and frameworks</li>
+                        <li><strong>Collaboration:</strong> Experience working in agile development teams</li>
+                    </ul>
+                </div>
+    
+                <div class="wil-card">
+                    <div class="wil-card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Key Projects</h3>
+                    <ul class="projects-list">
+                        <li><strong>MoodSync:</strong> Mood-based wellness and music application (Java, Android)</li>
+                        <li><strong>UniCollab:</strong> University research collaboration platform (Node.js, MongoDB)</li>
+                        <li><strong>MM Mobile Mechanic:</strong> Booking application for auto services (Kotlin, Firebase)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="wil-buttons">
+                <a href="#" data-section="resume" class="btn wil-btn-download">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <a href="#" data-section="contact" class="btn wil-btn-contact">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+            </div>
         
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <h3>GitHub</h3>
-          <p>Check out my projects</p>
-          <a href="https://github.com/yourusername" target="_blank" class="btn contact-btn">
-            <i class="fab fa-github"></i> Visit GitHub
-          </a>
+    </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="page-section">
+        <div class="main-content">
+            <h2>My <span class="name-highlight">Projects</span></h2>
+            <p class="section-subtitle">Showcasing my technical capabilities and problem-solving approach</p>
+    
+            <div class="projects-container">
+                <!-- Featured Project -->
+                <div class="project-card featured-project">
+                    <div class="project-icon">
+                        <i class="fas fa-heartbeat"></i>
+                        <div class="project-emoji">🎵📚😊</div>
+                    </div>
+                    <div class="project-details">
+                        <h3>MoodSync Wellness App</h3>
+                        <p class="project-tech">
+                            <span><i class="fab fa-html5"></i> HTML5</span>
+                            <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fab fa-node-js"></i> Node.js</span>
+                            <span><i class="fas fa-database"></i> MySQL</span>
+                        </p>
+                        <ul class="project-features">
+                            <li><i class="fas fa-smile"></i> Mood detection via facial recognition OR emoji selection</li>
+                            <li><i class="fab fa-youtube"></i> Music suggestions from YouTube/Spotify API</li>
+                            <li><i class="fas fa-book"></i> eBook/audiobook recommendations by genre</li>
+                            <li><i class="fas fa-chart-line"></i> Mood tracking dashboard</li>
+                            <li><i class="fas fa-user-cog"></i> Personalized user profiles</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="btn btn-small btn-outline"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Other Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-users"></i>
+                            <div class="project-emoji">👥🔬💡</div>
+                        </div>
+                        <div class="project-details">
+                            <h3>UniCollab Research Platform</h3>
+                            <p class="project-tech">
+                                <span><i class="fab fa-html5"></i> HTML5</span>
+                                <span><i class="fab fa-js"></i> JavaScript</span>
+                                <span><i class="fab fa-node-js"></i> Node.js</span>
+                                <span><i class="fas fa-database"></i> MySQL</span>
+                            </p>
+                            <ul class="project-features">
+                                <li><i class="fas fa-handshake"></i> Researcher matching system</li>
+                                <li><i class="fas fa-money-bill-wave"></i> Funding tracker</li>
+                                <li><i class="fas fa-comments"></i> Real-time chat</li>
+                                <li><i class="fas fa-tasks"></i> Project management</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="btn btn-small btn-outline"><i class="fas fa-external-link-alt"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-car"></i>
+                            <div class="project-emoji">🔧🚗📅</div>
+                        </div>
+                        <div class="project-details">
+                            <h3>Mobile Mechanic Booking</h3>
+                            <p class="project-tech">
+                                <span><i class="fab fa-java"></i> Java JEE</span>
+                                <span><i class="fab fa-html5"></i> HTML5</span>
+                                <span><i class="fas fa-database"></i> Java DB</span>
+                            </p>
+                            <ul class="project-features">
+                                <li><i class="fas fa-calendar-check"></i> Online scheduling</li>
+                                <li><i class="fas fa-tools"></i> Service catalog</li>
+                                <li><i class="fas fa-bell"></i> Automated reminders</li>
+                                <li><i class="fas fa-file-invoice"></i> Digital reports</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="btn btn-small btn-outline"><i class="fas fa-external-link-alt"></i>
+                                    Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <!-- Optional Contact Form -->
-      <div class="contact-form-container">
-        <h3>Or Send Me a Message</h3>
-        <form id="contactForm" class="contact-form">
-          <div class="form-group">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-group">
-            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="btn submit-btn">
-            <i class="fas fa-paper-plane"></i> Send Message
-          </button>
-        </form>
-      </div>
-    </div>
+    </section>
+    <section id="skills" class="page-section">
+        
+            <h2>Technical <span class="name-highlight">Proficiency</span></h2>
+            <p class="section-subtitle">Visualizing my skills and development focus areas</p>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- Programming Skills Bar Chart -->
+                <div class="chart-card">
+                    <h3><i class="fas fa-code"></i> Language Proficiency</h3>
+                    <div class="chart-container">
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Focus Areas Pie Chart -->
+                <div class="chart-card">
+                    <h3><i class="fas fa-bullseye"></i> Development Focus</h3>
+                    <div class="chart-container">
+                        <canvas id="focusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Cards -->
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h4><i class="fas fa-laptop-code"></i> IDEs & Editors</h4>
+                    <ul class="tool-list">
+                        <li><i class="fab fa-android"></i> Android Studio</li>
+                        <li><i class="fas fa-code"></i> VS Code</li>
+                        <li><i class="fas fa-coffee"></i> NetBeans</li>
+                    </ul>
+                </div>
+                <div class="tool-card">
+                    <h4><i class="fas fa-tools"></i> Development Tools</h4>
+                    <ul class="tool-list">
+                        <li><i class="fab fa-git-alt"></i> Git</li>
+                        <li><i class="fab fa-github"></i> GitHub</li>
+                        <li><i class="fas fa-database"></i> MySQL Workbench</li>
+                    </ul>
+                </div>
+                <div class="tool-card">
+                    <h4><i class="fas fa-desktop"></i> Operating Systems</h4>
+                    <ul class="tool-list">
+                        <li><i class="fab fa-ubuntu"></i> Ubuntu</li>
+                        <li><i class="fab fa-windows"></i> Windows</li>
+                        <li><i class="fas fa-terminal"></i> Command Line</li>
+                    </ul>
+                </div>
+            </div>
+        
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="page-section">
+        <div class="contact-wrapper">
+            <h2>Get In <span class="name-highlight">Touch</span></h2>
+            <p class="section-subtitle">I'm currently looking for new opportunities. Feel free to reach out!</p>
+    
+            <div class="contact-container">
+                <!-- Contact Options -->
+                <div class="contact-options">
+                
+                    <div class="contact-card student-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>Student Details</h3>
+                            <div class="student-info">
+                                <div class="info-item">
+                                    <i class="fas fa-id-card icon-fixed"></i>
+                                    <div class="info-text">
+                                        <span class="info-label">Student No:</span>
+                                        <span class="info-value">222142393</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-university icon-fixed"></i>
+                                    <div class="info-text">
+                                        <span class="info-label">Institution:</span>
+                                        <span class="info-value">Tshwane University of Technology</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-map-marker-alt icon-fixed"></i>
+                                    <div class="info-text">
+                                        <span class="info-label">Campus:</span>
+                                        <span class="info-value">Soshanguve South</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-map-pin icon-fixed"></i>
+                                    <div class="info-text">
+                                        <span class="info-label">Address:</span>
+                                        <span class="info-value">Block K, 2 Aubrey Matlakala St, Soshanguve - K, 0152</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-laptop-code icon-fixed"></i>
+                                    <div class="info-text">
+                                        <span class="info-label">Faculty:</span>
+                                        <span class="info-value">ICT - Computer Science</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>Email Me</h3>
+                            <p>For professional inquiries</p>
+                            <a href="mailto:mustafa@example.com" class="btn contact-btn">
+                                <i class="fas fa-paper-plane"></i> Send Email
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>LinkedIn</h3>
+                            <p>Let's connect professionally</p>
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn contact-btn">
+                                <i class="fab fa-linkedin"></i> View Profile
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-content">
+                            <h3>GitHub</h3>
+                            <p>Check out my projects</p>
+                            <a href="https://github.com/yourusername" target="_blank" class="btn contact-btn">
+                                <i class="fab fa-github"></i> Visit GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3>Or Send Me a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="follow-text">Follow me on:</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Mustafa Xaba. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="/my-portfolio/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Language Proficiency Bar Chart
+    const langCtx = document.getElementById('languageChart').getContext('2d');
+    const langChart = new Chart(langCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Java/Kotlin', 'JavaScript', 'Python', 'HTML/CSS', 'SQL'],
+        datasets: [{
+          label: 'Proficiency Level',
+          data: [85, 75, 65, 80, 70],
+          backgroundColor: [
+            '#4d8bff', // Blue
+            '#00c896', // Teal
+            '#ff6b6b', // Coral
+            '#ffa502', // Orange
+            '#9c88ff'  // Purple
+          ],
+          borderColor: [
+            '#3a7bf7',
+            '#00b383',
+            '#e55050',
+            '#e58e02',
+            '#8c7ae6'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Added to work with your fixed height container
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false // Hide legend since we only have one dataset
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y + '% proficiency';
+              }
+            },
+            backgroundColor: '#0a1172',
+            titleFont: {
+              weight: 'bold'
+            }
+          }
+        }
+      }
+    });
+
+    // Initialize Focus Areas Doughnut Chart
+    const focusCtx = document.getElementById('focusChart').getContext('2d');
+    const focusChart = new Chart(focusCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Frontend', 'Backend', 'Database', 'DevOps'],
+        datasets: [{
+          data: [35, 40, 15, 10],
+          backgroundColor: [
+            '#4d8bff', // Blue
+            '#00c896', // Teal
+            '#ff6b6b', // Coral
+            '#ffa502'  // Orange
+          ],
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Added to work with your fixed height container
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 20,
+              font: {
+                size: 14
+              },
+              color: '#0a1172'
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.raw + '%';
+              }
+            },
+            backgroundColor: '#0a1172',
+            titleFont: {
+              weight: 'bold'
+            }
+          }
+        },
+        cutout: '65%'
+      }
+    });
+  });
+</script>
   </div>
-  
-
-</section>
- <footer class="footer">
-    <div class="footer-socials">
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>&copy; 2025 Mustafa Xaba. All Rights Reserved.</p>
-  </footer>
-
-  <script src="/my-portfolio/js/script.js"></script>
 </body>
 </html>
