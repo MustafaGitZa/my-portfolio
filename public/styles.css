@@ -429,6 +429,135 @@ header {
   box-shadow: 0 4px 15px rgba(77, 139, 255, 0.3);
 }
 
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #f8f8f8;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #666;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-modal:hover {
+  color: #0a1172;
+}
+
+.modal h3 {
+  color: #0a1172;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal p {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.download-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.pdf-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.word-btn {
+  background-color: #2b579a;
+  color: white;
+}
+
+/* WIL Button Adjustments */
+.wil-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+#resumeModalBtn {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 20% auto;
+    padding: 25px;
+  }
+  
+  .wil-buttons {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  .wil-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .wil-buttons button, 
+  .wil-buttons a {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
 .wil-btn-contact {
   background: white;
   color: #0a1172;

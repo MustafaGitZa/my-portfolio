@@ -118,7 +118,7 @@
 
     <!-- WIL Section -->
     <section id="wil" class="page-section">
-        
+        <div class="main-content">
             <h2>Open to New <span class="name-highlight">Opportunities</span></h2>
             <p class="section-subtitle">Gaining practical experience in real-world environments</p>
     
@@ -162,15 +162,32 @@
             </div>
     
             <div class="wil-buttons">
-                <a href="#" data-section="resume" class="btn wil-btn-download">
+                <button class="btn wil-btn-download" id="resumeModalBtn">
                     <i class="fas fa-download"></i> Download Resume
-                </a>
+                </button>
                 <a href="#" data-section="contact" class="btn wil-btn-contact">
                     <i class="fas fa-envelope"></i> Contact Me
                 </a>
             </div>
-        
+        </div>
     </section>
+    
+    <!-- Resume Download Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Download Resume</h3>
+            <p>Select your preferred format:</p>
+            <div class="download-options">
+                <a href="MustafaXaba Resume updated .pdf" download="MustafaXaba_Resume.pdf" class="download-btn pdf-btn">
+                    <i class="fas fa-file-pdf"></i> PDF Version
+                </a>
+                <a href="MustafaXaba Resume.docx" download="MustafaXaba_Resume.docx" class="download-btn word-btn">
+                    <i class="fas fa-file-word"></i> Word Version
+                </a>
+            </div>
+        </div>
+    </div>
     <!-- Portfolio Section -->
     <section id="portfolio" class="page-section">
         <div class="main-content">
