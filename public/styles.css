@@ -1500,14 +1500,24 @@ header {
 }
 
 /* ================================
-   MOBILE MENU STYLES
+   MOBILE MENU STYLES - IMPROVED
    ================================ */
 .mobile-menu-btn {
     display: none;
     cursor: pointer;
     font-size: 24px;
     color: white;
-    padding: 10px;
+    padding: 15px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+header {
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .navbar {
@@ -1519,37 +1529,68 @@ header {
         display: block;
     }
     
+    .logo {
+        margin-left: 50px; /* Make space for hamburger */
+        text-align: center;
+        flex-grow: 1;
+    }
+    
+    header {
+        justify-content: center;
+        padding-left: 50px; /* Space for hamburger */
+    }
+    
     .navbar {
         position: fixed;
-        top: 80px;
+        top: 0;
         left: 0;
-        width: 100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
         background-color: #0a1172;
         flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        transform: translateY(-150%);
-        opacity: 0;
-        z-index: 99;
+        padding: 80px 20px 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+        transform: translateX(-100%);
+        z-index: 90;
     }
     
     .navbar.active {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateX(0);
     }
     
     .navbar ul {
         flex-direction: column;
         width: 100%;
-        text-align: center;
     }
     
     .navbar ul li {
-        margin: 10px 0;
+        margin: 15px 0;
+    }
+    
+    .navbar ul li a {
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .navbar ul li a:hover {
+        background-color: rgba(255,255,255,0.1);
     }
     
     .mobile-menu-btn.active i::before {
-        content: '\f00d'; /* Changes to X icon when active */
+        content: '\f00d'; /* X icon */
+    }
+    
+    /* Semi-transparent overlay when menu is open */
+    .menu-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 80;
     }
 }
