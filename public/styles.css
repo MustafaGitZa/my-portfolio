@@ -1498,3 +1498,58 @@ header {
     font-size: 0.95rem;
   }
 }
+
+/* ================================
+   MOBILE MENU STYLES
+   ================================ */
+.mobile-menu-btn {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+}
+
+.navbar {
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #0a1172;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        transform: translateY(-150%);
+        opacity: 0;
+        z-index: 99;
+    }
+    
+    .navbar.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar ul li {
+        margin: 10px 0;
+    }
+    
+    .mobile-menu-btn.active i::before {
+        content: '\f00d'; /* Changes to X icon when active */
+    }
+}
