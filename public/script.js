@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // MOBILE MENU FUNCTIONALITY
@@ -10,14 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const navbar = document.querySelector('.navbar');
     const header = document.querySelector('header');
+    let isMenuOpen = false;
 
     // Toggle mobile menu
     function toggleMobileMenu() {
+        isMenuOpen = !isMenuOpen;
         navbar.classList.toggle('active');
         mobileMenuBtn.classList.toggle('active');
         header.classList.toggle('menu-open');
         
-        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : 'auto';
+        document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     }
 
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close mobile menu
     function closeMobileMenu() {
         if (window.innerWidth <= 768) {
+            isMenuOpen = false;
             navbar.classList.remove('active');
             mobileMenuBtn.classList.remove('active');
             header.classList.remove('menu-open');
@@ -143,24 +145,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // =============================================
-    // STICKY NAVBAR SCROLL BEHAVIOR
+   /* // =============================================
+    // IMPROVED STICKY NAVBAR SCROLL BEHAVIOR
     // =============================================
     const headerElement = document.querySelector('header');
     let lastScrollPosition = 0;
+    let ticking = false;
 
     window.addEventListener('scroll', function() {
-        const currentScrollPosition = window.pageYOffset;
-        
-        // Always show navbar when scrolling up
-        if (currentScrollPosition < lastScrollPosition) {
-            headerElement.style.transform = 'translateY(0)';
-        } 
-        // Hide navbar when scrolling down (only if not at top and menu not open)
-        else if (currentScrollPosition > 100 && !header.classList.contains('menu-open')) {
-            headerElement.style.transform = 'translateY(-100%)';
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                const currentScrollPosition = window.pageYOffset;
+                
+                // Don't hide navbar if menu is open or modal is open
+                if (isMenuOpen || document.body.classList.contains('modal-open')) {
+                    headerElement.style.transform = 'translateY(0)';
+                    ticking = false;
+                    return;
+                }
+                
+                // Always show navbar when scrolling up
+                if (currentScrollPosition < lastScrollPosition) {
+                    headerElement.style.transform = 'translateY(0)';
+                } 
+                // Hide navbar when scrolling down (only if not at top)
+                else if (currentScrollPosition > 100) {
+                    headerElement.style.transform = 'translateY(-100%)';
+                }
+                
+                // Show navbar at top of page
+                if (currentScrollPosition <= 0) {
+                    headerElement.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollPosition = currentScrollPosition;
+                ticking = false;
+            });
+            ticking = true;
         }
-        
-        lastScrollPosition = currentScrollPosition;
-    });
+    });*/
 });
