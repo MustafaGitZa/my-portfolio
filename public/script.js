@@ -17,17 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuBtn.classList.toggle('active');
         header.classList.toggle('menu-open');
         
-        // Toggle body overflow when menu is open
-        if (navbar.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : 'auto';
     }
 
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-    // Close mobile menu when clicking a link or overlay
+    // Close mobile menu
     function closeMobileMenu() {
         if (window.innerWidth <= 768) {
             navbar.classList.remove('active');
@@ -36,17 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         }
     }
-
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-
-    // Close menu when clicking overlay
-    header.addEventListener('click', function(e) {
-        if (e.target === header && header.classList.contains('menu-open')) {
-            closeMobileMenu();
-        }
-    });
 
     // =============================================
     // MODAL FUNCTIONALITY
@@ -59,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = "block";
         document.body.style.overflow = 'hidden';
         document.body.classList.add('modal-open');
-        closeMobileMenu(); // Close mobile menu if open
+        closeMobileMenu();
     }
 
     function closeModal() {
@@ -68,15 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('modal-open');
     }
 
-    if (btn) btn.onclick = openModal;
-    if (span) span.onclick = closeModal;
+    if (btn) btn.addEventListener('click', openModal);
+    if (span) span.addEventListener('click', closeModal);
     
-    window.onclick = function(event) {
-        if (event.target == modal) closeModal();
-    };
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) closeModal();
+        if (event.target === header && header.classList.contains('menu-open')) closeMobileMenu();
+    });
 
     // =============================================
-    // NAVIGATION FUNCTIONALITY
+    // IMPROVED NAVIGATION FUNCTIONALITY
     // =============================================
     function navigateToSection(targetSection, e) {
         if (e) e.preventDefault();
@@ -104,13 +89,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetElement) {
             targetElement.classList.add('active-section');
             
-            // Scroll to section
-            if (targetSection === 'home') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            // Scroll to section with navbar offset
+            const navbarHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetSection === 'home' ? 0 : 
+                targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
         }
+        
+        closeMobileMenu();
     }
 
     // Set up all navigation links
@@ -142,10 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize navigation
+    // Initialize navigation and set home as active by default
     setupNavigation();
-    
-    // Set home as active by default
     document.querySelector('nav.navbar a[data-section="home"]')?.classList.add('active-nav');
     
     // Close mobile menu when window is resized to desktop size
@@ -153,5 +141,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth > 768) {
             closeMobileMenu();
         }
+    });
+
+    // =============================================
+    // STICKY NAVBAR SCROLL BEHAVIOR
+    // =============================================
+    const headerElement = document.querySelector('header');
+    let lastScrollPosition = 0;
+
+    window.addEventListener('scroll', function() {
+        const currentScrollPosition = window.pageYOffset;
+        
+        // Always show navbar when scrolling up
+        if (currentScrollPosition < lastScrollPosition) {
+            headerElement.style.transform = 'translateY(0)';
+        } 
+        // Hide navbar when scrolling down (only if not at top and menu not open)
+        else if (currentScrollPosition > 100 && !header.classList.contains('menu-open')) {
+            headerElement.style.transform = 'translateY(-100%)';
+        }
+        
+        lastScrollPosition = currentScrollPosition;
     });
 });
