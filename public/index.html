@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
+
 <body>
   <!-- Hero Section -->
   <div class="hero-section">
@@ -35,7 +36,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1>Hi There! I'm <span class="name-highlight">Mustafa Xaba</span></h1>
-          <p>Computer Science student | Software Developer</p>
+          <p>Computer Science student | Aspiring Software Developer</p>
 
           <p class="contact-details">
             <span><i class="fas fa-map-marker-alt"></i> Centurion,Pretoria |</span>
@@ -52,7 +53,7 @@
             <a href="https://www.linkedin.com/in/mustafa-sibusiso-8b41662aa/"><i class="fa-brands fa-linkedin"></i></a>
             <a href="https://github.com/MustafaGitZa"><i class="fa-brands fa-github"></i></a>
             <a href="https://www.instagram.com/sibusisomst/"><i class="fa-brands fa-instagram"></i></a>
-            <a href="mailto:mustafa@example.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:sibusisomst@gmail.com?subject=Portfolio%20Contact&body=Hi%20Mustafa,"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
 
@@ -153,9 +154,10 @@
                     </div>
                     <h3>Key Projects</h3>
                     <ul class="projects-list">
-                        <li><strong>MoodSync:</strong> Mood-based wellness and music application (Java, Android)</li>
-                        <li><strong>UniCollab:</strong> University research collaboration platform (Node.js, MongoDB)</li>
-                        <li><strong>MM Mobile Mechanic:</strong> Booking application for auto services (Kotlin, Firebase)
+                        <li><strong>MoodSync:</strong> Mood-based wellness and music application (Node.js, MySQL)</li>
+                        <li><strong>UniCollab:</strong> University research collaboration platform (Node.js, MySQL)</li>
+                        <li><strong>MM Mobile Mechanic:</strong> Booking application for auto services (Java, Java DB)</li>
+                        <li><strong>Portfolio Website:</strong> Personal portfolio showcasing my skills and projects</li>
                         </li>
                     </ul>
                 </div>
@@ -280,6 +282,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -399,7 +402,7 @@
                         <div class="contact-content">
                             <h3>Email Me</h3>
                             <p>For professional inquiries</p>
-                            <a href="mailto:mustafa@example.com" class="btn contact-btn">
+                            <a href="mailto:sibusisomst@gmail.com?subject=Portfolio%20Contact&body=Hi%20Mustafa," class="btn contact-btn">
                                 <i class="fas fa-paper-plane"></i> Send Email
                             </a>
                         </div>
@@ -412,7 +415,7 @@
                         <div class="contact-content">
                             <h3>LinkedIn</h3>
                             <p>Let's connect professionally</p>
-                            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn contact-btn">
+                            <a href="https://www.linkedin.com/in/mustafa-xaba-8b41662aa/" target="_blank" class="btn contact-btn">
                                 <i class="fab fa-linkedin"></i> View Profile
                             </a>
                         </div>
@@ -425,13 +428,14 @@
                         <div class="contact-content">
                             <h3>GitHub</h3>
                             <p>Check out my projects</p>
-                            <a href="https://github.com/yourusername" target="_blank" class="btn contact-btn">
+                            <a href="https://github.com/MustafaGitZa" target="_blank" class="btn contact-btn">
                                 <i class="fab fa-github"></i> Visit GitHub
                             </a>
                         </div>
                     </div>
                 </div>
-    
+                
+
                 <!-- Contact Form -->
                 <div class="contact-form-container">
                     <h3>Or Send Me a Message</h3>
@@ -449,7 +453,13 @@
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
+
                 </div>
+                <div id="form-spinner" style="display: none; text-align: center; margin-top: 15px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 26px; color: #007bff;"></i>
+                    <p style="margin-top: 5px;">Sending message...</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -458,10 +468,10 @@
         <div class="footer-content">
             <p class="follow-text">Follow me on:</p>
             <div class="social-icons">
-                <a href="#" class="social-icon" aria-label="Twitter">
+                <a href="https://x.com/MustafaXaba" class="social-icon" aria-label="Twitter">
                     <i class="fab fa-x-twitter"></i>
                 </a>
-                <a href="#" class="social-icon" aria-label="Instagram">
+                <a href="https://www.instagram.com/sibusisomst/" class="social-icon" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
                 <a href="#" class="social-icon" aria-label="Facebook">
@@ -598,6 +608,81 @@
     });
   });
 </script>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("pdP-wa6fS66cOe3QX");  // Replace with your Public Key
+  })();
+
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        
+        document.getElementById("form-spinner").style.display = "block";
+
+        
+        const submitButton = this.querySelector(".submit-btn");
+        submitButton.disabled = true;
+
+        emailjs.sendForm('service_5ljcnye', 'template_flim9jv', this)
+            .then(function () {
+                
+                document.getElementById("form-spinner").style.display = "none";
+
+                
+                submitButton.disabled = false;
+
+                
+                document.getElementById("contactForm").reset();
+
+                
+                document.getElementById("successModal").style.display = "block";
+            }, function (error) {
+                alert(" Failed to send message. Please try again.");
+                document.getElementById("form-spinner").style.display = "none";
+                submitButton.disabled = false;
+            });
+    });
+
+    function closeModal() {
+            document.getElementById("successModal").style.display = "none";
+        }
+
+
+</script>
+
   </div>
+  <div id="successModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  text-align: center;
+  padding-top: 150px;
+">
+  <div style="
+    background: #fff;
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  ">
+    <h3 style="margin: 0 0 15px 0;"> Message Sent</h3>
+    <p style="margin-bottom: 20px;">Thank you for getting in touch. I’ll get back to you soon!</p>
+    <button onclick="closeModal()" style="
+      padding: 8px 18px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    ">Okay</button>
+  </div>
+</div>
+
 </body>
 </html>
