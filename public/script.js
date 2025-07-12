@@ -2,186 +2,211 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // MOBILE MENU FUNCTIONALITY
     // =============================================
-    const mobileMenuBtn = document.createElement('div');
+    const mobileMenuBtn = document.createElement('button');
     mobileMenuBtn.className = 'mobile-menu-btn';
     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    document.querySelector('header').prepend(mobileMenuBtn);
+    document.querySelector('.navbar').before(mobileMenuBtn);
 
     const navbar = document.querySelector('.navbar');
-    const header = document.querySelector('header');
     let isMenuOpen = false;
 
-    // Toggle mobile menu
     function toggleMobileMenu() {
         isMenuOpen = !isMenuOpen;
         navbar.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
-        header.classList.toggle('menu-open');
+        document.body.classList.toggle('menu-open');
         
-        document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+        // Change icon
+        const icon = mobileMenuBtn.querySelector('i');
+        if (isMenuOpen) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     }
 
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-    // Close mobile menu
-    function closeMobileMenu() {
-        if (window.innerWidth <= 768) {
-            isMenuOpen = false;
-            navbar.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            header.classList.remove('menu-open');
-            document.body.style.overflow = 'auto';
+    // Close menu when clicking on a nav item
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                toggleMobileMenu();
+            }
+        });
+    });
+
+    // Close menu when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (isMenuOpen && !navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            toggleMobileMenu();
         }
-    }
+    });
+
+    // Close menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            toggleMobileMenu();
+        }
+    });
 
     // =============================================
     // MODAL FUNCTIONALITY
     // =============================================
-    const modal = document.getElementById("resumeModal");
-    const btn = document.getElementById("resumeModalBtn");
-    const span = document.getElementsByClassName("close-modal")[0];
+    const resumeModal = document.getElementById("resumeModal");
+    const successModal = document.getElementById("successModal");
 
-    function openModal() {
-        modal.style.display = "block";
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('modal-open');
-        closeMobileMenu();
+    function openModal(modal) {
+        if (modal) {
+            modal.style.display = "block";
+            document.body.style.overflow = 'hidden';
+            document.body.classList.add('modal-open');
+        }
     }
 
-    function closeModal() {
-        modal.style.display = "none";
-        document.body.style.overflow = 'auto';
-        document.body.classList.remove('modal-open');
+    function closeModal(modal) {
+        if (modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+            document.body.classList.remove('modal-open');
+        }
     }
 
-    if (btn) btn.addEventListener('click', openModal);
-    if (span) span.addEventListener('click', closeModal);
-    
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) closeModal();
-        if (event.target === header && header.classList.contains('menu-open')) closeMobileMenu();
+    // Set up modal triggers
+    document.querySelectorAll('[data-target="resumeModal"], .wil-btn-download, a[href="#resume"]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal(resumeModal);
+        });
+    });
+
+    // Close buttons
+    document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', function() {
+            closeModal(this.closest('.modal'));
+        });
+    });
+
+    // Close when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target);
+        }
     });
 
     // =============================================
-    // IMPROVED NAVIGATION FUNCTIONALITY
+    // RESUME DOWNLOAD FUNCTIONALITY
     // =============================================
-    function navigateToSection(targetSection, e) {
-        if (e) e.preventDefault();
+    function downloadResume(filename) {
+        // Create the correct file path
+        const filePath = filename;
         
-        // Handle resume modal
-        if (targetSection === 'wil') {
-            openModal();
-            return;
-        }
-        
-        // Update active nav link
-        document.querySelectorAll('nav.navbar a[data-section]').forEach(link => {
-            link.classList.remove('active-nav');
-            if (link.getAttribute('data-section') === targetSection) {
-                link.classList.add('active-nav');
+        // Verify file exists before attempting download
+        fetch(filePath, { method: 'HEAD' })
+            .then(res => {
+                if (res.ok) {
+                    // Create temporary link to trigger download
+                    const link = document.createElement('a');
+                    link.href = filePath;
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    throw new Error('File not found');
+                }
+            })
+            .catch(error => {
+                console.error('Download error:', error);
+                alert(`Sorry, the file "${filename}" couldn't be found. Please contact me directly at sibusisomst@gmail.com`);
+            });
+    }
+
+    // Set up download buttons with your specific filenames
+    document.querySelectorAll('.download-pdf').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadResume('Mustafa_Xaba_Resume_updated.pdf');
+            closeModal(resumeModal);
+        });
+    });
+
+    document.querySelectorAll('.download-docx').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadResume('MustafaXaba_Resume.docx');
+            closeModal(resumeModal);
+        });
+    });
+
+    // =============================================
+    // FORM HANDLING
+    // =============================================
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+        contactForm.addEventListener("submit", function() {
+            document.getElementById("form-spinner").style.display = "flex";
+        });
+    }
+
+    window.showFormSuccess = function() {
+        document.getElementById("form-spinner").style.display = "none";
+        setTimeout(() => openModal(successModal), 300);
+        if (contactForm) contactForm.reset();
+    };
+
+    window.showFormError = function() {
+        document.getElementById("form-spinner").style.display = "none";
+        alert("Failed to send message. Please try again or contact me directly at sibusisomst@gmail.com");
+    };
+
+    // =============================================
+    // SMOOTH SCROLLING NAVIGATION
+    // =============================================
+    document.querySelectorAll('a[href^="#"]:not([href="#resume"])').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.offsetTop - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
-        
-        // Update active section
-        document.querySelectorAll('.page-section').forEach(section => {
-            section.classList.remove('active-section');
-        });
-        
-        const targetElement = document.getElementById(targetSection);
-        if (targetElement) {
-            targetElement.classList.add('active-section');
-            
-            // Scroll to section with navbar offset
-            const navbarHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetSection === 'home' ? 0 : 
-                targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-        
-        closeMobileMenu();
-    }
-
-    // Set up all navigation links
-    function setupNavigation() {
-        // Navbar links
-        document.querySelectorAll('nav.navbar a[data-section]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                navigateToSection(this.getAttribute('data-section'), e);
-            });
-        });
-        
-        // Hero section buttons
-        document.querySelector('.hero-buttons a[data-section="contact"]')?.addEventListener('click', function(e) {
-            navigateToSection('contact', e);
-        });
-        
-        document.querySelector('.hero-buttons a[data-section="portfolio"]')?.addEventListener('click', function(e) {
-            navigateToSection('portfolio', e);
-        });
-        
-        // WIL section "Contact Me" button
-        document.querySelector('.wil-btn-contact')?.addEventListener('click', function(e) {
-            navigateToSection('contact', e);
-        });
-        
-        // Download buttons in modal
-        document.querySelectorAll('.download-btn').forEach(button => {
-            button.addEventListener('click', closeModal);
-        });
-    }
-
-    // Initialize navigation and set home as active by default
-    setupNavigation();
-    document.querySelector('nav.navbar a[data-section="home"]')?.classList.add('active-nav');
-    
-    // Close mobile menu when window is resized to desktop size
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            closeMobileMenu();
-        }
     });
 
-   /* // =============================================
-    // IMPROVED STICKY NAVBAR SCROLL BEHAVIOR
     // =============================================
-    const headerElement = document.querySelector('header');
-    let lastScrollPosition = 0;
-    let ticking = false;
+    // ACTIVE NAV LINK ON SCROLL
+    // =============================================
+    function setActiveNavLink() {
+        const scrollPosition = window.scrollY + 100;
+        
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                const id = section.getAttribute('id');
+                document.querySelectorAll('.navbar a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
 
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                const currentScrollPosition = window.pageYOffset;
-                
-                // Don't hide navbar if menu is open or modal is open
-                if (isMenuOpen || document.body.classList.contains('modal-open')) {
-                    headerElement.style.transform = 'translateY(0)';
-                    ticking = false;
-                    return;
-                }
-                
-                // Always show navbar when scrolling up
-                if (currentScrollPosition < lastScrollPosition) {
-                    headerElement.style.transform = 'translateY(0)';
-                } 
-                // Hide navbar when scrolling down (only if not at top)
-                else if (currentScrollPosition > 100) {
-                    headerElement.style.transform = 'translateY(-100%)';
-                }
-                
-                // Show navbar at top of page
-                if (currentScrollPosition <= 0) {
-                    headerElement.style.transform = 'translateY(0)';
-                }
-                
-                lastScrollPosition = currentScrollPosition;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });*/
+    window.addEventListener('scroll', setActiveNavLink);
+    setActiveNavLink(); // Initialize on load
+
+    
 });
