@@ -28,27 +28,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-    // Close menu when clicking on a nav item
+    // =============================================
+    // NAVIGATION FUNCTIONALITY (for all clickable elements)
+    // =============================================
+    function handleNavigationClick(e) {
+        // For elements with href="#section"
+        if (this.hash && this.hash !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(this.hash);
+            if (target) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = target.offsetTop - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL without page jump
+                history.pushState(null, null, this.hash);
+            }
+        }
+        
+        // For mobile, close menu after clicking
+        if (window.innerWidth <= 768) {
+            toggleMobileMenu();
+        }
+    }
+
+    // Apply to all nav links
     document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                toggleMobileMenu();
+        link.addEventListener('click', handleNavigationClick);
+    });
+
+    // =============================================
+    // HERO BUTTONS FUNCTIONALITY (FIXED)
+    // =============================================
+    document.querySelectorAll('.hero-buttons a').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (this.dataset.section) {
+                e.preventDefault();
+                const target = document.getElementById(this.dataset.section);
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
-    });
-
-    // Close menu when clicking outside on mobile
-    document.addEventListener('click', function(e) {
-        if (isMenuOpen && !navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-            toggleMobileMenu();
-        }
-    });
-
-    // Close menu when resizing to desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && isMenuOpen) {
-            toggleMobileMenu();
-        }
     });
 
     // =============================================
@@ -73,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Set up modal triggers
+    // Resume modal triggers
     document.querySelectorAll('[data-target="resumeModal"], .wil-btn-download, a[href="#resume"]').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -162,28 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // =============================================
-    // SMOOTH SCROLLING NAVIGATION
-    // =============================================
-    document.querySelectorAll('a[href^="#"]:not([href="#resume"])').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // =============================================
     // ACTIVE NAV LINK ON SCROLL
     // =============================================
     function setActiveNavLink() {
@@ -208,5 +217,19 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', setActiveNavLink);
     setActiveNavLink(); // Initialize on load
 
-    
+    // =============================================
+    // RESPONSIVE BEHAVIOR
+    // =============================================
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            toggleMobileMenu();
+        }
+    });
+
+    // Close menu when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (isMenuOpen && !navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            toggleMobileMenu();
+        }
+    });
 });

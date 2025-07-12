@@ -196,12 +196,10 @@ header {
 } */
 
 .hero {
-  max-width: 1100px;           /* was 1000px */
-   padding: 4rem 2rem;
-  padding: 4rem 2rem;
+  max-width: 1000px;           /* was 1000px */
   text-align: center;
-  background-color: #fff;
-  color: white;
+  background-color: red;
+  color: rebeccapurple;
   border-radius: 1rem;         /* was 2rem */
 }
 
@@ -212,6 +210,8 @@ header {
   justify-content: space-between; /* ✅ push items to corners like the navbar */
   gap: 40px;
   max-width: 1200px;
+  height: 700px;
+  padding: 0rem 0rem;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -375,7 +375,7 @@ background: #aaaaaa;
 
 
 #about h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(32px, 3vw, 20px);
   margin-bottom: 15px;
   color: #ECECEC;               /* warm modern accent (soft gold) — adjust to taste */
   font-weight: 700;
@@ -409,6 +409,7 @@ background: #aaaaaa;
   text-align: center;
   font-family: 'Inter', 'Poppins', sans-serif;
   font-weight: 400;
+  padding: 0rem 10rem;
 }
 
 .about-text strong {
@@ -426,7 +427,7 @@ background: #aaaaaa;
 .tech-stacks {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 30px;
   margin-top: 40px;
 }
@@ -467,7 +468,7 @@ background: #aaaaaa;
 }
 
 #wil h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(42px, 6vw, 20px);
   margin-bottom: 10px;
   text-align: center;
   color: #0a1172;
@@ -485,9 +486,9 @@ background: #aaaaaa;
 
 /* Heading Styling */
 #wil h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(32px, 3vw, 20px);
   margin-bottom: 15px;
-  color: #555555;;
+  color: #555555;
   font-weight: 700;
   line-height: 1.2;
   font-family: 'Poppins', sans-serif;
@@ -788,7 +789,7 @@ background: #aaaaaa;
 
 /* Headings */
 #portfolio h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(32px, 3vw, 20px);
   margin-bottom: 10px;
   text-align: center;
   color: #555555;
@@ -1039,7 +1040,7 @@ background: #aaaaaa;
 }
 
 #contact h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(32px, 3vw, 20px);
   margin-bottom: 10px;
   text-align: center;
   color: #0a1172;
@@ -1522,7 +1523,7 @@ background: #aaaaaa;
 }
 
 #skills h2 {
-  font-size: clamp(42px, 6vw, 60px);
+  font-size: clamp(32px, 3vw, 20px);
   margin-bottom: 15px;
   text-align: center;
   color: #0a1172;
