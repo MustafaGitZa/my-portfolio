@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.download-pdf').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            downloadResume('Mustafa_Xaba_Resume_updated.pdf');
+            downloadResume('Mustafa_Xaba_Resume updated.pdf');
             closeModal(resumeModal);
         });
     });
