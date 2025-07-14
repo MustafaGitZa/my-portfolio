@@ -1787,3 +1787,306 @@ background: #aaaaaa;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* ================================
+   DARK MODE OVERRIDES
+   ================================ */
+
+  .dark-mode-toggle {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle i {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dark-mode-toggle:hover i {
+  transform: scale(1.3);
+  opacity: 0.9;
+}
+
+/* Tooltip Text on Hover */
+.dark-mode-toggle::after {
+  content: "Dark Mode";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(50, 50, 50, 0.85);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.dark-mode-toggle:hover::after {
+  opacity: 1;
+}
+
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* Navbar */
+body.dark-mode .navbar,
+body.dark-mode header,
+body.dark-mode .footer {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+/* Links */
+body.dark-mode .navbar ul li a,
+body.dark-mode .social-icon,
+body.dark-mode .small-btn,
+body.dark-mode .contact-details i,
+body.dark-mode .tech-icon,
+body.dark-mode .chart-card h3,
+body.dark-mode .tool-card h4,
+body.dark-mode .project-features li i {
+  color: #f0f0f0;
+}
+
+body.dark-mode .navbar ul li a.active {
+  color: #4d8bff;
+}
+
+/* Hero Section */
+body.dark-mode .hero {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .hero-content h1,
+body.dark-mode .name-highlight {
+  color: #f0f0f0;
+}
+
+body.dark-mode .hero-text p,
+body.dark-mode .hero-text .summary {
+  color: #cccccc;
+}
+
+/* Buttons */
+body.dark-mode .btn,
+body.dark-mode .submit-btn,
+body.dark-mode .wil-btn-download {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode .btn:hover,
+body.dark-mode .submit-btn:hover {
+  background-color: #444;
+}
+
+/* About Section */
+body.dark-mode #about,
+body.dark-mode .about-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode #about h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .about-text {
+  color: #dddddd;
+}
+
+/* WIL Section */
+body.dark-mode #wil,
+body.dark-mode .wil-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .wil-card {
+  background-color: #232323;
+  border-color: #333;
+}
+
+body.dark-mode .wil-card h3,
+body.dark-mode .wil-card p {
+  color: #e0e0e0;
+}
+
+/* Portfolio Section */
+body.dark-mode #portfolio {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .project-card {
+  background-color: #232323;
+  border-color: #333;
+}
+
+body.dark-mode .project-card h3 {
+  color: #f0f0f0;
+}
+
+/* Skills Section */
+body.dark-mode #skills {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .chart-card,
+body.dark-mode .tool-card {
+  background-color: #232323;
+  border-color: #333;
+}
+
+body.dark-mode .tool-card h4 {
+  color: #f0f0f0;
+}
+
+/* Contact Section */
+body.dark-mode #contact {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .contact-links-container,
+body.dark-mode .contact-form-container {
+  background-color: #232323;
+  border-color: #333;
+}
+
+body.dark-mode .contact-link h3,
+body.dark-mode .contact-form-container h3 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background-color: #333;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+/* Modal */
+body.dark-mode .modal-content {
+  background-color: #232323;
+  color: #f0f0f0;
+}
+
+/* Misc Text Colors */
+body.dark-mode .section-subtitle,
+body.dark-mode .project-features li,
+body.dark-mode .info-item span,
+body.dark-mode .tool-list li {
+  color: #cccccc;
+}
+
+body.dark-mode .strengths-list li::before,
+body.dark-mode .projects-list li::before {
+  color: #4d8bff;
+}
+
+/* Icon Hover Colors */
+body.dark-mode .social-icon:hover,
+body.dark-mode .btn:hover {
+  color: #4d8bff;
+}
+
+/* Responsive Navbar and Layout Enhancements */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .navbar.active ul {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .nav-center {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .hero-image img {
+    width: 220px;
+  }
+
+  .hero-text, .about-text {
+    padding: 0 1rem;
+    font-size: 0.95rem;
+  }
+
+  .btn, .wil-btn-download, .wil-btn-contact {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+
+  .tech-stacks, .projects-grid, .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar ul li a {
+    font-size: 14px;
+  }
+
+  .dark-mode-toggle {
+    font-size: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .btn, .wil-btn-download, .wil-btn-contact {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+}
