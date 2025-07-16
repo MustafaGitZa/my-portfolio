@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.download-pdf').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            downloadResume('Mustafa_Xaba_Resume updated.pdf');
+            downloadResume('Mustafa_Xaba_Resume.pdf');
             closeModal(resumeModal);
         });
     });
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.download-docx').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            downloadResume('MustafaXaba_Resume.docx');
+            downloadResume('Mustafa_Xaba_Resume.docx');
             closeModal(resumeModal);
         });
     });
