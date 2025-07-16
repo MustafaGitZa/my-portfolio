@@ -787,7 +787,7 @@ body {
     padding: 15px;
     border-radius: 8px;
     font-weight: 600;
-    color: white;
+    color:  var(--text-color-secondary);
     text-decoration: none;
     transition: transform 0.3s, box-shadow 0.3s;
 }
