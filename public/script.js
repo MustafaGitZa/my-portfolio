@@ -1,80 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // =============================================
-    // MOBILE MENU FUNCTIONALITY
-    // =============================================
-    const mobileMenuBtn = document.createElement('button');
-    mobileMenuBtn.className = 'mobile-menu-btn';
-    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    document.querySelector('.navbar').before(mobileMenuBtn);
-
+document.addEventListener('DOMContentLoaded', function () {
+    // =============== MOBILE MENU ===================
     const navbar = document.querySelector('.navbar');
-    let isMenuOpen = false;
+    if (navbar) {
+        const mobileMenuBtn = document.createElement('button');
+        mobileMenuBtn.className = 'mobile-menu-btn';
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        navbar.before(mobileMenuBtn);
 
-    function toggleMobileMenu() {
-        isMenuOpen = !isMenuOpen;
-        navbar.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        
-        // Change icon
-        const icon = mobileMenuBtn.querySelector('i');
-        if (isMenuOpen) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            navbar.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars', !isMenuOpen);
+            icon.classList.toggle('fa-times', isMenuOpen);
         }
-    }
 
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-    // =============================================
-    // NAVIGATION FUNCTIONALITY (for all clickable elements)
-    // =============================================
-    function handleNavigationClick(e) {
-        // For elements with href="#section"
-        if (this.hash && this.hash !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(this.hash);
-            if (target) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = target.offsetTop - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL without page jump
-                history.pushState(null, null, this.hash);
+        // Close menu on nav link click (mobile)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                if (this.hash && this.hash !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.hash);
+                    if (target) {
+                        const offset = navbar.offsetHeight;
+                        window.scrollTo({
+                            top: target.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
+                        history.pushState(null, null, this.hash);
+                    }
+                }
+                if (window.innerWidth <= 768) toggleMobileMenu();
+            });
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 768 && isMenuOpen) toggleMobileMenu();
+        });
+
+        document.addEventListener('click', function (e) {
+            if (isMenuOpen && !navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                toggleMobileMenu();
             }
-        }
-        
-        // For mobile, close menu after clicking
-        if (window.innerWidth <= 768) {
-            toggleMobileMenu();
-        }
+        });
     }
 
-    // Apply to all nav links
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', handleNavigationClick);
-    });
-
-    // =============================================
-    // HERO BUTTONS FUNCTIONALITY (FIXED)
-    // =============================================
+    // =============== HERO BUTTONS ===================
     document.querySelectorAll('.hero-buttons a').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             if (this.dataset.section) {
                 e.preventDefault();
                 const target = document.getElementById(this.dataset.section);
-                if (target) {
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight;
-                    
+                if (target && navbar) {
+                    const offset = navbar.offsetHeight;
                     window.scrollTo({
-                        top: targetPosition,
+                        top: target.offsetTop - offset,
                         behavior: 'smooth'
                     });
                 }
@@ -82,9 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // =============================================
-    // MODAL FUNCTIONALITY
-    // =============================================
+    // =============== MODALS =========================
     const resumeModal = document.getElementById("resumeModal");
     const successModal = document.getElementById("successModal");
 
@@ -104,42 +87,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Resume modal triggers
     document.querySelectorAll('[data-target="resumeModal"], .wil-btn-download, a[href="#resume"]').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             openModal(resumeModal);
         });
     });
 
-    // Close buttons
     document.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', function() {
-            closeModal(this.closest('.modal'));
-        });
+        btn.addEventListener('click', () => closeModal(btn.closest('.modal')));
     });
 
-    // Close when clicking outside
-    window.addEventListener('click', function(e) {
-        if (e.target.classList.contains('modal')) {
-            closeModal(e.target);
-        }
+    window.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal')) closeModal(e.target);
     });
 
-    // =============================================
-    // RESUME DOWNLOAD FUNCTIONALITY
-    // =============================================
+    // =============== DOWNLOAD FUNCTION ==============
     function downloadResume(filename) {
-        // Create the correct file path
-        const filePath = filename;
-        
-        // Verify file exists before attempting download
-        fetch(filePath, { method: 'HEAD' })
+        fetch(filename, { method: 'HEAD' })
             .then(res => {
                 if (res.ok) {
-                    // Create temporary link to trigger download
                     const link = document.createElement('a');
-                    link.href = filePath;
+                    link.href = filename;
                     link.download = filename;
                     document.body.appendChild(link);
                     link.click();
@@ -148,15 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error('File not found');
                 }
             })
-            .catch(error => {
-                console.error('Download error:', error);
-                alert(`Sorry, the file "${filename}" couldn't be found. Please contact me directly at sibusisomst@gmail.com`);
+            .catch(() => {
+                alert(`"${filename}" not found. Contact sibusisomst@gmail.com`);
             });
     }
 
-    // Set up download buttons with your specific filenames
     document.querySelectorAll('.download-pdf').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             downloadResume('Mustafa_Xaba_Resume updated.pdf');
             closeModal(resumeModal);
@@ -164,101 +131,79 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.querySelectorAll('.download-docx').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             downloadResume('MustafaXaba_Resume.docx');
             closeModal(resumeModal);
         });
     });
 
-    // =============================================
-    // FORM HANDLING
-    // =============================================
+    // =============== FORM SPINNER ONLY ==============
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
-        contactForm.addEventListener("submit", function() {
+        contactForm.addEventListener("submit", function () {
             document.getElementById("form-spinner").style.display = "flex";
         });
     }
 
-    window.showFormSuccess = function() {
+    window.showFormSuccess = function () {
         document.getElementById("form-spinner").style.display = "none";
         setTimeout(() => openModal(successModal), 300);
         if (contactForm) contactForm.reset();
     };
 
-    window.showFormError = function() {
+    window.showFormError = function () {
         document.getElementById("form-spinner").style.display = "none";
-        alert("Failed to send message. Please try again or contact me directly at sibusisomst@gmail.com");
+        alert("Failed to send message. Please email me at sibusisomst@gmail.com");
     };
 
-    // =============================================
-    // ACTIVE NAV LINK ON SCROLL
-    // =============================================
+    // =============== ACTIVE NAV LINK ================
     function setActiveNavLink() {
-        const scrollPosition = window.scrollY + 100;
-        
+        const scrollY = window.scrollY + 100;
         document.querySelectorAll('section').forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            if (scrollY >= top && scrollY < top + height) {
                 const id = section.getAttribute('id');
                 document.querySelectorAll('.navbar a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                 });
             }
         });
     }
 
     window.addEventListener('scroll', setActiveNavLink);
-    setActiveNavLink(); // Initialize on load
-
-    // =============================================
-    // RESPONSIVE BEHAVIOR
-    // =============================================
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && isMenuOpen) {
-            toggleMobileMenu();
-        }
-    });
-
-    // Close menu when clicking outside on mobile
-    document.addEventListener('click', function(e) {
-        if (isMenuOpen && !navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-            toggleMobileMenu();
-        }
-    });
+    setActiveNavLink();
 });
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  const icon = document.querySelector('.dark-mode-toggle i');
-  if (document.body.classList.contains('dark-mode')) {
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-    localStorage.setItem('theme', 'light');
-  }
-}
-
-// Load saved theme on page load
+// =============== DARK MODE =========================
 window.onload = function () {
-  const theme = localStorage.getItem('theme');
-  const icon = document.querySelector('.dark-mode-toggle i');
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-  }
-}
+    const theme = localStorage.getItem('theme');
+    const icon = document.querySelector('.dark-mode-toggle i');
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (icon) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+    } else {
+        if (icon) {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+    }
+};
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const icon = document.querySelector('.dark-mode-toggle i');
+    if (document.body.classList.contains('dark-mode')) {
+        if (icon) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        localStorage.setItem('theme', 'dark');
+    } else {
+        if (icon) {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+        localStorage.setItem('theme', 'light');
+    }
+}
