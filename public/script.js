@@ -207,3 +207,8 @@ function toggleDarkMode() {
         localStorage.setItem('theme', 'light');
     }
 }
+
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.classList.toggle('open');
+}
