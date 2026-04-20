@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.download-pdf').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            downloadResume('Mustafa Xaba - CV.pdf');
+            downloadResume('Mustafa_Xaba_CV.pdf');
             closeModal(resumeModal);
         });
     });
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.download-docx').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            downloadResume('Mustafa Xaba - CV.docx');
+            downloadResume('Mustafa_Xaba_CV.docx');
             closeModal(resumeModal);
         });
     });
@@ -209,6 +209,6 @@ function toggleDarkMode() {
 }
 
 function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  nav.classList.toggle('open');
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
 }
